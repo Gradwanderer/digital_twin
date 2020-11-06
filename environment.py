@@ -29,7 +29,7 @@ def sunmove(d, ld, sd, hi, li, o, today):
             return (sun_hours, sun_intens)
         else:  # 2. half of year
             sun_hours = ld - (abs(today - longest_day) * diff_time)
-            sun_intens = hi - (abs(today - longest_day) * diff_intens) 
+            sun_intens = hi - (abs(today - longest_day) * diff_intens)
             return (sun_hours, sun_intens)
     return (sun_hours, sun_intens)
 
