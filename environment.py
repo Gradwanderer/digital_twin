@@ -25,8 +25,8 @@ def sunmove(d, ld, sd, hi, li, o, today):
     :param o: offset of the shortest day if it shouldn't be the first one
     :param today: day one would like to calculate
     :return: hours of the day and sun intensity
-
     """
+
     longest_day = o + d / 2
     diff_time = abs(ld - sd) / (d / 2)
     diff_intens = abs(hi - li) / (d / 2)
