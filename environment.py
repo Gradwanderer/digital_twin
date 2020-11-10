@@ -17,6 +17,7 @@ def sunmove_day(d, ld, sd, hi, li, o, today):
     Calculates the max ammount of hour the sun could shine and the intensity of the sun. The decrease or increase for
     both is linear. Also the longest day is always the 1/2 the days away from the shortest day. Therefore use only
     even numbers for d. Calculating the sunrise and sunset based on the 1/2 hours of sunshin substracted or added to 12.
+    All calculation are based on a 24h circle.
     :param d: days per year
     :param ld: hours of the longest day of the year
     :param sd: hours of the shortest day of the year
@@ -49,14 +50,23 @@ def sunmove_day(d, ld, sd, hi, li, o, today):
     return
 
 def sunmove_hour(itl, ith, sr, ss, hd):
-
+    """
+    Calculate the intensity of the sun. Full intensity at the middle between sunrise and sunset
+    :param itl: low intensity of the day
+    :param ith: high intensity of the day (noon)
+    :param sr: sunrise time for 24 hour circle
+    :param ss: sunset time for 24 hour circle
+    :param hd: the time you want to calculate (for 11:30 o'clock take 11.5)
+    :return:
+    """
     hoursofday = ss - sr
+    halfday = ss + (hoursofday / 2)
     intensdiff = ith - itl
     intenschange = intensdiff / (hoursofday / 2)
     if (hd < sr) or (hd > ss):  # nighttime
         return 0
     else:  # daytime
-        if (hd < 12):  # first hours of day
+        if (hd < halfday):  # first hours of day
             hour_intense = ((hd - sr) * intenschange) + itl
             return hour_intense
         else:  # last hours of day
