@@ -48,18 +48,28 @@ def sunmove_day(d, ld, sd, hi, li, o, today):
         return (sun_intens, sunrise, sunset)
     return
 
-def sunmove_hour(it, sr, ss, hd):
+def sunmove_hour(itl, ith, sr, ss, hd):
 
-    if (hd < sr) or (hd > ss):
+    hoursofday = ss - sr
+    intensdiff = ith - itl
+    intenschange = intensdiff / (hoursofday / 2)
+    if (hd < sr) or (hd > ss):  # nighttime
         return 0
-
+    else:  # daytime
+        if (hd < 12):  # first hours of day
+            hour_intense = ((hd - sr) * intenschange) + itl
+            return hour_intense
+        else:  # last hours of day
+            hour_intense = ((ss - hd) * intenschange) + itl
+            return hour_intense
     return
 
 
 today = 250
-
-print(sunmove_day(days_per_year,
+sunday = sunmove_day(days_per_year,
               longest_day_hours, shortest_day_hours,
               high_intensity, low_intensity,
-              offset, today))
-
+              offset, today)
+print(sunday)
+sunhour = sunmove_hour(0.6, *sunday, 11)
+print(sunhour)
