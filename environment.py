@@ -31,6 +31,7 @@ def sunmove_day(d, ld, sd, hi, li, o, today):
     longest_day = o + d / 2
     diff_time = abs(ld - sd) / (d / 2)
     diff_intens = abs(hi - li) / (d / 2)
+
     if ((today < longest_day) & (today > o)) or (today < o):  # winter to summer
         sun_hours = (abs(today - o) * diff_time) + sd
         sun_intens = (abs(today - o) * diff_intens) + li
