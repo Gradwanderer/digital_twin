@@ -1,5 +1,5 @@
 # Import libraries
-
+import numpy as np
 
 # set up variables
 
@@ -7,19 +7,29 @@
 def machine_run():
 
 
+    min_temp = 25
+    normal_temp = 50
+    steepness = 25  # results in 175 max temp
 
-    #  part 1 conveyor belt
-    conveyor_belt_temp
-    conveyor_belt_workload
-    conveyor_belt_lifetime
-    conveyor_belt_last_repair
-    conveyor_belt_wear
 
+    times = [lifetime, last_repair]
+    times[:] = [(number + 1) for number in times]  # adding 1h to time
 
     workload = wl + np.random.uniform(-0.05, 0.05) + np.random.normal(0, 0.009)
-    temp
-    lifetime
-    last_repair
-    wear
+    if (workload < 0.7): # low workload
+        temp = min_temp
+        wear
+
+    elif (workload > 1): # high workload
+        temp = 50 + (steepness ** workload)  # exponential rise of temp
+        wear
+
+
+    else: # best usage
+        temp = 25 + (normal_temp - min_temp) * workload
+        wear
+
+
+    if (repair == 1): times[1] == 0
 
     return
