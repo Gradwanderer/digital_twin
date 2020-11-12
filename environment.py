@@ -37,16 +37,19 @@ def sunmove_day(d, ld, sd, hi, li, o, today):
         sunrise = 12 - (sun_hours / 120)  # 120 to get minutes to hours * 2
         sunset = 12 + (sun_hours / 120)
         return (sun_intens, sunrise, sunset)
+
     elif (today == o):
         sunrise = 12 - (sd / 120)
         sunset = 12 + (sd/ 120)
         return (li, sunrise, sunset)
+
     else:  # summer to winter
         sun_hours = ld - (abs(today - longest_day) * diff_time)
         sun_intens = hi - (abs(today - longest_day) * diff_intens)
         sunrise = 12 - (sun_hours / 120)
         sunset = 12 + (sun_hours / 120)
         return (sun_intens, sunrise, sunset)
+
     return
 
 def sunmove_hour(itl, ith, sr, ss, hd):
@@ -59,22 +62,28 @@ def sunmove_hour(itl, ith, sr, ss, hd):
     :param hd: the time you want to calculate (for 11:30 o'clock take 11.5)
     :return:
     """
+
     hoursofday = ss - sr
     halfday = ss + (hoursofday / 2)
     intensdiff = ith - itl
     intenschange = intensdiff / (hoursofday / 2)
+
     if (hd < sr) or (hd > ss):  # nighttime
         return 0
+
     else:  # daytime
         if (hd < halfday):  # first hours of day
             hour_intense = ((hd - sr) * intenschange) + itl
             return hour_intense
+
         else:  # last hours of day
             hour_intense = ((ss - hd) * intenschange) + itl
             return hour_intense
+
     return
 
 
+# testing
 today = 250
 sunday = sunmove_day(days_per_year,
               longest_day_hours, shortest_day_hours,

@@ -26,6 +26,7 @@ def calc_room_temp(le, wi, hi, ma,  warmth, cool, temp):
     floorcubic = floormeter * hi - ma
     room_energy = floorcubic * temp
     room_energy_new = room_energy + warmth - cool
+
     return room_energy_new
 
-
+# testing
