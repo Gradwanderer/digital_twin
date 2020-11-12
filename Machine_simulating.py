@@ -14,6 +14,8 @@ def machine_run():
 
     times = [lifetime, last_repair]
     times[:] = [(number + 1) for number in times]  # adding 1h to time
+    if (repair == 1): times[1] == 0  # check for repair
+    if (replaced == 1): times[0] == 0  # check for replacement
 
     workload = wl + np.random.uniform(-0.05, 0.05) + np.random.normal(0, 0.009)
     if (workload < 0.7): # low workload
@@ -30,6 +32,6 @@ def machine_run():
         wear
 
 
-    if (repair == 1): times[1] == 0
+
 
     return
